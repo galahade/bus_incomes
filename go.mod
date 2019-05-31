@@ -8,6 +8,7 @@ replace (
 	golang.org/x/sync v0.0.0-20190412183630-56d357773e84 => github.com/golang/sync v0.0.0-20190412183630-56d357773e84
 	golang.org/x/sys v0.0.0-20190215142949-d0b11bdaac8a => github.com/golang/sys v0.0.0-20190215142949-d0b11bdaac8a
 	golang.org/x/sys v0.0.0-20190222072716-a9d3bda3a223 => github.com/golang/sys v0.0.0-20190222072716-a9d3bda3a223
+	golang.org/x/text v0.3.0 => github.com/golang/text v0.3.0
 )
 
 require (
