@@ -3,7 +3,7 @@ module github.com/galahade/bus_incomes
 go 1.12
 
 replace (
-	golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2 => github.com/golang/crypto v0.0.0-20190308221718-c2843e01d9a2
+	golang.org/x/crypto v0.0.0-20190530122614-20be4c3c3ed5 => github.com/golang/crypto v0.0.0-20190530122614-20be4c3c3ed5
 	golang.org/x/net v0.0.0-20190503192946-f4e77d36d62c => github.com/golang/net v0.0.0-20190503192946-f4e77d36d62c
 	golang.org/x/sync v0.0.0-20190412183630-56d357773e84 => github.com/golang/sync v0.0.0-20190412183630-56d357773e84
 	golang.org/x/sys v0.0.0-20190215142949-d0b11bdaac8a => github.com/golang/sys v0.0.0-20190215142949-d0b11bdaac8a
