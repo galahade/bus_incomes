@@ -2,6 +2,9 @@
 
 ### Mongodb Shell
 
+### Install mongo on ubuntu
+https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
+
 ### Run mongodb in mac
 ```
  mongod --config /usr/local/etc/mongod.conf
@@ -55,4 +58,8 @@ go install -i
 ### Run app
 ```
 bus_incomes -log_dir=log -alsologtostderr
+
+# On server
+
+bus_incomes -log_dir=log &
 ```

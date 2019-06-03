@@ -27,19 +27,19 @@ func main() {
 
 	router := gin.New()
 	router.Use(ginglog.Logger(3*time.Second), gin.Logger(), gin.Recovery())
-
+	baseURL := "/data"
 	//router config for rout request
-	router.GET("/", func(c *gin.Context) {
+	router.GET(baseURL+"/", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
 			"status":  "OK",
 			"message": "welcome to my site.",
 		})
 	})
-	router.GET("/incomes/:year/:month", c.GetMonthLinesIncomes)
-	router.DELETE("/incomes/:year/:month/:line", c.DeleteLineMonthIncome)
+	router.GET(baseURL+"/incomes/:year/:month", c.GetMonthLinesIncomes)
+	router.DELETE(baseURL+"/incomes/:year/:month/:line", c.DeleteLineMonthIncome)
 
-	router.POST("/incomes", c.AddLineMonthIncome)
-	router.GET("/monthIncomesCompare/:year/:month", c.GetSortedTwoMonthComparedIncomesByDate)
+	router.POST(baseURL+"/incomes", c.AddLineMonthIncome)
+	router.GET(baseURL+"/monthIncomesCompare/:year/:month", c.GetSortedTwoMonthComparedIncomesByDate)
 	err := router.Run(fmt.Sprintf(":%d", port))
 	if err != nil {
 		log.Fatal(err)

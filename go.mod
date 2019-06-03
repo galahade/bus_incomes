@@ -17,7 +17,8 @@ require (
 	github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b
 	github.com/golang/snappy v0.0.1 // indirect
 	github.com/shopspring/decimal v0.0.0-20180709203117-cd690d0c9e24
-	github.com/szuecs/gin-glog v1.1.1 // indirect
+	github.com/stretchr/testify v1.3.0
+	github.com/szuecs/gin-glog v1.1.1
 	github.com/xdg/scram v0.0.0-20180814205039-7eeb5667e42c // indirect
 	github.com/xdg/stringprep v1.0.0 // indirect
 	go.mongodb.org/mongo-driver v1.0.2
