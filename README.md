@@ -62,4 +62,8 @@ bus_incomes -log_dir=log -alsologtostderr
 # On server
 
 bus_incomes -log_dir=log &
+
+# If you want to run app as upstart serivce 
+sudo cp bus_incomes.conf /etc/init/
+sudo service bus_incomes start
 ```
