@@ -1,0 +1,17 @@
+[Unit]
+Description=bus_incomes is a service for input bus incomes
+After=network-online.target remote-fs.target nss-lookup.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+PIDFile=/var/run/bus_incomes.pid
+Restart=always
+RestartSec=5s
+Environment=GIN_MODE=release
+ExecStart=/var/git/go/bin/bus_incomes -log_dir=/var/log/bus_incomes -p=8000
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID
+
+[Install]
+WantedBy=multi-user.target
