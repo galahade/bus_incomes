@@ -64,6 +64,14 @@ bus_incomes -log_dir=log -alsologtostderr
 bus_incomes -log_dir=log &
 
 # If you want to run app as upstart serivce 
-sudo cp bus_incomes.conf /etc/init/
-sudo service bus_incomes start
+sudo cp bus_incomes.service /lib/systemd/system/
+sudo systemctl start bus_incomes
+# To enable it on boot
+sudo systemctl enable bus_incomes 
+# check status
+sudo systemctl status bus_incomes 
+```
+### Check if servie work
+```
+wget -qO- http://localhost:8080/data/incomes/2019/05
 ```
