@@ -27,7 +27,7 @@ func FindMonthlyLinesIncomes(year int, month time.Month, opt ...*options.FindOpt
 	glog.Warning("Enter methtod :" + methodName)
 	filter := filterConditionByMonthOrAndLine(util.GetMonthlyStandardTime(year, month))
 	var results []LineMonthIncome
-	collection := Client.Database("bus").Collection("incomes")
+	collection := Client.Database(util.MongoDBName).Collection(util.BusDBCollectionIncomes)
 
 	if cursor, err := collection.Find(ctx, filter, opt...); err != nil {
 		ok = false
@@ -47,7 +47,7 @@ func FindMonthlyLinesIncomes(year int, month time.Month, opt ...*options.FindOpt
 
 //InsertLineMonthIncome add a LineMonthIncome to DB
 func InsertLineMonthIncome(income *LineMonthIncome) error {
-	result, err := Client.Database("bus").Collection("incomes").InsertOne(context.TODO(), income)
+	result, err := Client.Database(util.MongoDBName).Collection(util.BusDBCollectionIncomes).InsertOne(context.TODO(), income)
 	if err == nil {
 		id, ok := result.InsertedID.(primitive.ObjectID)
 		if !ok {
@@ -62,7 +62,7 @@ func InsertLineMonthIncome(income *LineMonthIncome) error {
 //DeleteLineMonthIncome delete a LineMonthIncome to DB
 func DeleteLineMonthIncome(year int, month time.Month, line int) (err error) {
 	filter := filterConditionByMonthOrAndLine(util.GetMonthlyStandardTime(year, month), line)
-	result, err := Client.Database("bus").Collection("incomes").DeleteOne(context.TODO(), filter)
+	result, err := Client.Database(util.MongoDBName).Collection(util.BusDBCollectionIncomes).DeleteOne(context.TODO(), filter)
 	glog.Infof("Delete count is %d", result.DeletedCount)
 	if result.DeletedCount == int64(0) && err == nil {
 		err = fmt.Errorf("Can't delete Line %d Month %d-%d's income from DB", line, year, month)
@@ -75,7 +75,7 @@ func SelectLineMonthIncome(year int, month time.Month, lineNO int) (bool, LineMo
 	methodName := "SelectLineMonthlyIncome"
 	ok := true
 	filter := filterConditionByMonthOrAndLine(util.GetMonthlyStandardTime(year, month), lineNO)
-	collection := Client.Database("bus").Collection("incomes")
+	collection := Client.Database(util.MongoDBName).Collection(util.BusDBCollectionIncomes)
 	var income LineMonthIncome
 	err := collection.FindOne(ctx, filter).Decode(&income)
 	if err != nil {

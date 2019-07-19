@@ -23,7 +23,7 @@ mongo
 #### Get a collection's documents
 ```
 use bus
-db.getCollection("stats").find()
+db.getCollection("incomes").find()
 
 
 db.incomes.findOne( { line: {line_no: 20 }, income: {cash: NumberLong(100000)}} )
