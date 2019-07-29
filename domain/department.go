@@ -31,9 +31,26 @@ func (department *Department) Insert() error {
 	return err
 }
 
-// Get query monthly all lines incomes. opt pass query otpions like sort order.
-func (department *Department) Get() error {
-	methodName := "department.Get"
+// SelectByID query monthly all lines incomes. opt pass query otpions like sort order.
+func (department *Department) SelectByID() error {
+	methodName := "department.SelectByID"
+	id := department.Domain.ID
+	filter := bson.M{
+		"_id": bson.M{"$eq": id},
+	}
+	collection := Client.Database(util.MongoDBName).Collection(util.BusDBCollectionDepartment)
+	err := collection.FindOne(ctx, filter).Decode(&department)
+	if err != nil {
+		if err != mongo.ErrNoDocuments {
+			glog.Errorf("%s %s error : %#v\n", methodName, id, err)
+		}
+	}
+	return err
+}
+
+// Select query monthly all lines incomes. opt pass query otpions like sort order.
+func (department *Department) Select() error {
+	methodName := "department.Select"
 	name := department.Name
 	filter := bson.M{
 		"name": bson.M{"$eq": name},

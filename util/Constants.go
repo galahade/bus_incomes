@@ -7,4 +7,6 @@ const (
 	BusDBCollectionIncomes string = "incomes"
 	//BusDBCollectionDepartment is mongo collection for staff department
 	BusDBCollectionDepartment string = "department"
+	//BusDBCollectionStaff is mongo collection for staff
+	BusDBCollectionStaff string = "staff"
 )

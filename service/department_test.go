@@ -6,6 +6,7 @@ import (
 
 	"github.com/galahade/bus_incomes/domain"
 	"github.com/stretchr/testify/assert"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 func TestIsDepartmentExistFalse(t *testing.T) {
@@ -57,4 +58,19 @@ func TestRemoveDepartmentTrue(t *testing.T) {
 	ok := RemoveDepartment(department)
 
 	assert.True(t, ok)
+}
+
+func TestGetDepartmentByID(t *testing.T) {
+	id, _ := primitive.ObjectIDFromHex("5d327dd275953466a750dc05")
+	ok, dep := GetDepartmentByID(id)
+	assert.True(t, ok)
+	assert.Equal(t, "operation", dep.Name)
+	assert.Equal(t, "001", dep.SN)
+}
+
+func TestGetDepartmentByName(t *testing.T) {
+	ok, dep := GetDepartmentByName("operation")
+	assert.True(t, ok)
+	assert.Equal(t, "operation", dep.Name)
+	assert.Equal(t, "001", dep.SN)
 }
