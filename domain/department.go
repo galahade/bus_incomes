@@ -2,12 +2,14 @@ package domain
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/galahade/bus_incomes/util"
 	"github.com/golang/glog"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 //Department is for staff's
@@ -46,6 +48,30 @@ func (department *Department) SelectByID() error {
 		}
 	}
 	return err
+}
+
+//SelectAllDepartment is
+func SelectAllDepartment() []Department {
+	methodName := "SelectAllDepartment"
+	glog.Info("Enter methtod :" + methodName)
+	findOpt := options.Find().SetSort(bson.M{"sn": 1})
+
+	var results []Department
+	collection := Client.Database(util.MongoDBName).Collection(util.BusDBCollectionDepartment)
+	// Passing bson.D{{}} as the filter matches all documents in the collection
+	if cursor, err := collection.Find(ctx, bson.D{{}}, findOpt); err != nil {
+		glog.Errorf("Error happened on mongo find command. Error is %s", err)
+	} else {
+		defer cursor.Close(ctx)
+		for cursor.Next(ctx) {
+			var dep Department
+			err := cursor.Decode(&dep)
+			util.CheckErr(err, fmt.Sprintf("%s decode bson error", methodName))
+			results = append(results, dep)
+		}
+	}
+
+	return results
 }
 
 // Select query monthly all lines incomes. opt pass query otpions like sort order.

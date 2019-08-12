@@ -18,7 +18,7 @@ func AddDepartment(dep *domain.Department) (ok bool, err error) {
 	return ok, err
 }
 
-//IsDepartmentExist is used to check a department if exist
+//IsDepartmentExist is used to check a department if exist by department name
 func IsDepartmentExist(dep *domain.Department) bool {
 	ok := true
 	err := dep.Select()
@@ -62,5 +62,24 @@ func GetDepartmentByName(name string) (bool, domain.Department) {
 	}
 
 	return ok, dep
+
+}
+
+// GetAllDepartments is used to get a department by id
+func GetAllDepartments() (ok bool, results []domain.Department) {
+	results = domain.SelectAllDepartment()
+
+	if len(results) > 0 {
+		ok = true
+		var temp []domain.Department
+		for _, department := range results {
+			// Set json id with bson objectID
+			(&department).JID = department.ID.Hex()
+			temp = append(temp, department)
+		}
+		results = temp
+	}
+
+	return ok, results
 
 }

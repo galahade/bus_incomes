@@ -74,3 +74,8 @@ func TestGetDepartmentByName(t *testing.T) {
 	assert.Equal(t, "operation", dep.Name)
 	assert.Equal(t, "001", dep.SN)
 }
+
+func TestGetAllDepartments(t *testing.T) {
+	ok, _ := GetAllDepartments()
+	assert.True(t, ok)
+}
