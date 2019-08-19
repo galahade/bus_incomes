@@ -9,4 +9,14 @@ const (
 	BusDBCollectionDepartment string = "department"
 	//BusDBCollectionStaff is mongo collection for staff
 	BusDBCollectionStaff string = "staff"
+
+	//Job Type
+	JobDriver     = "司机"
+	JobMananger   = "主管"
+	JobHeadman    = "组长"
+	JobDispatcher = "调度员"
+	JobCommonStaff = "职员"
+	JobCharger = "充电工"
+	JobMaintenanceMan = "维修工"
+	JobIT = "网络管理员"
 )

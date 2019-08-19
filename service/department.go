@@ -73,8 +73,6 @@ func GetAllDepartments() (ok bool, results []domain.Department) {
 		ok = true
 		var temp []domain.Department
 		for _, department := range results {
-			// Set json id with bson objectID
-			(&department).JID = department.ID.Hex()
 			temp = append(temp, department)
 		}
 		results = temp

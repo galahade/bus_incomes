@@ -42,9 +42,16 @@ func main() {
 	router.GET(baseURL+"/monthIncomesCompare/:year/:month", c.GetSortedTwoMonthComparedIncomesByDate)
 
 	//department
-	router.GET(baseURL+"/departments", c.GetAllDepartments)
+	router.GET(baseURL+"/department", c.GetAllDepartments)
 	router.POST(baseURL+"/department", c.AddDepartment)
 	router.DELETE(baseURL+"/department", c.DeleteDepartment)
+
+	//staff
+	router.GET(baseURL+"/staff", c.GetAllStaff)
+	router.GET(baseURL+"/department/:departmentID/staff", c.GetStaffByDepartment)
+	router.POST(baseURL+"/staff", c.AddStaff)
+	router.DELETE(baseURL+"/staff", c.DeleteStaff)
+	router.GET(baseURL+"/staff/jobType", c.GetAllJobType)
 
 	err := router.Run(fmt.Sprintf(":%d", port))
 	if err != nil {

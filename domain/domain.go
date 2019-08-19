@@ -50,8 +50,7 @@ func filterConditionByMonthOrAndLine(time time.Time, lineNo ...int) bson.M {
 
 // Domain is basic struct for all Domain
 type Domain struct {
-	ID  primitive.ObjectID `json:"-" bson:"_id,omitempty"`
-	JID string             `json:"id,omitempty" bson:"-"`
+	ID primitive.ObjectID `json:"id" bson:"_id,omitempty"`
 }
 
 //Line is Bus line info

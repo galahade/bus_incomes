@@ -2,7 +2,6 @@ package service
 
 import (
 	"testing"
-	"time"
 
 	"github.com/galahade/bus_incomes/domain"
 	"github.com/stretchr/testify/assert"
@@ -10,6 +9,7 @@ import (
 )
 
 //Can't run it multitimes
+/*
 func TestAddStaffTrue(t *testing.T) {
 	_, dep := GetDepartmentByName("operation")
 	depID := dep.ID
@@ -23,7 +23,7 @@ func TestAddStaffTrue(t *testing.T) {
 		FirstOnboardTime: time.Date(2012, 1, 1, 0, 0, 0, 0, time.UTC),
 		Phone:            "12345678987",
 		DepartmentID:     depID,
-		Job:              "GM",
+		Job:              util.JobMananger,
 	}
 
 	ok, err := AddStaff(&staff)
@@ -31,7 +31,7 @@ func TestAddStaffTrue(t *testing.T) {
 	assert.True(t, ok)
 	assert.Nil(t, err)
 }
-
+*/
 func TestIsStaffExist(t *testing.T) {
 	staff := domain.Staff{
 		Name:       "许宁",
@@ -63,4 +63,10 @@ func TestGetStaffByEmployeeID(t *testing.T) {
 	ok, staff := GetStaffByEmployeeID("000005")
 	assert.True(t, ok)
 	assert.Equal(t, "132930198202071234", staff.PersonalID)
+}
+
+func TestGetStaffByDepartmentID(t *testing.T) {
+	ok, staff := GetStaffByDepartmentID("5d516c4ce0ae67c92bb708bd")
+	assert.True(t, ok)
+	assert.NotNil(t, staff)
 }
