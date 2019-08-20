@@ -64,6 +64,9 @@ go test -run TestMongoDBInsertMany
 ```bash
 #!/bin/bash
 cd ~/git/go/src/github.com/galahade/bus_incomes
+# or server 
+cd /home/young/workbench/bus_incomes
+
 go install -i
 ```
 
@@ -91,4 +94,15 @@ sudo systemctl status bus_incomes
 ```bash
 #!/bin/bash
 wget -qO- http://localhost:8080/data/incomes/2019/05
+```
+
+
+### Deplay steps
+
+```bash
+#!/bin/bash
+sudo cd /home/young/workbench/bus_incomes
+sudo git pull
+sudo go install -i
+sudo systemctl restart bus_incomes
 ```

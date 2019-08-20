@@ -89,44 +89,35 @@ func GetStaffByDepartment(c *gin.Context) {
 	departmentID := c.Param("departmentID")
 
 	var results []model.StaffModel
-	ok := false
 	status := http.StatusBadRequest
-	if ok, results = service.GetStaffByDepartmentID(departmentID); ok {
-		status = http.StatusOK
-		c.JSON(status, gin.H{
-			"staff": results,
-		})
-	} else {
-		c.JSON(status, gin.H{})
-	}
+	_, results = service.GetStaffByDepartmentID(departmentID)
+	status = http.StatusOK
+	c.JSON(status, gin.H{
+		"staff": results,
+	})
+
 }
 
 // GetAllStaff get all staff
 func GetAllStaff(c *gin.Context) {
 	var results []model.StaffModel
-	ok := false
 	status := http.StatusBadRequest
-	if ok, results = service.GetAllStaff(); ok {
-		status = http.StatusOK
-		c.JSON(status, gin.H{
-			"staff": results,
-		})
-	} else {
-		c.JSON(status, gin.H{})
-	}
+	_, results = service.GetAllStaff()
+	status = http.StatusOK
+	c.JSON(status, gin.H{
+		"staff": results,
+	})
+
 }
 
 // GetAllJobType get all staff
 func GetAllJobType(c *gin.Context) {
 	var results []string
-	ok := false
 	status := http.StatusBadRequest
-	if ok, results = service.GetAllJobType(); ok {
-		status = http.StatusOK
-		c.JSON(status, gin.H{
-			"jobTypes": results,
-		})
-	} else {
-		c.JSON(status, gin.H{})
-	}
+	_, results = service.GetAllJobType()
+	status = http.StatusOK
+	c.JSON(status, gin.H{
+		"jobTypes": results,
+	})
+
 }

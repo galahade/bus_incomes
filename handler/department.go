@@ -85,14 +85,11 @@ func AddDepartment(c *gin.Context) {
 // GetAllDepartments get all lines monthly incomes
 func GetAllDepartments(c *gin.Context) {
 	var results []domain.Department
-	ok := false
 	status := http.StatusBadRequest
-	if ok, results = s.GetAllDepartments(); ok {
-		status = http.StatusOK
-		c.JSON(status, gin.H{
-			"department": results,
-		})
-	} else {
-		c.JSON(status, gin.H{})
-	}
+	_, results = s.GetAllDepartments()
+	status = http.StatusOK
+	c.JSON(status, gin.H{
+		"department": results,
+	})
+
 }
