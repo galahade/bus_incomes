@@ -23,7 +23,7 @@ type StaffModel struct {
 	IsMultitimeHired bool              `json:"is_multitime_hired"`
 	IsResign         bool              `json:"is_resign"`
 	FirstOnboardTime string            `json:"first_onboard_time"`
-	Phone            string            `json:"phone" bson:"phone"`
+	Phone            string            `json:"phone"`
 	Department       domain.Department `json:"department"`
 	Job              string            `json:"job"`
 }

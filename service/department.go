@@ -68,16 +68,7 @@ func GetDepartmentByName(name string) (bool, domain.Department) {
 // GetAllDepartments is used to get a department by id
 func GetAllDepartments() (ok bool, results []domain.Department) {
 	results = domain.SelectAllDepartment()
-
-	if len(results) > 0 {
-		ok = true
-		var temp []domain.Department
-		for _, department := range results {
-			temp = append(temp, department)
-		}
-		results = temp
-	}
-
+	ok = true
 	return ok, results
 
 }

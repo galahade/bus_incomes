@@ -18,7 +18,7 @@ type Staff struct {
 	Domain           `json:",inline" bson:",inline"`
 	Name             string             `json:"name" bson:"name"`
 	EmployeeID       string             `json:"employee_id" bson:"employee_id"`
-	OnboardTime      time.Time          `json:"" bson:"onboard_time"`
+	OnboardTime      time.Time          `json:"onboard_time" bson:"onboard_time"`
 	PersonalID       string             `json:"personal_id" bson:"personal_id"`
 	IsMultitimeHired bool               `json:"is_multitime_hired" bson:"is_multitime_hired"`
 	IsResign         bool               `json:"is_resign" bson:"is_resign"`

@@ -53,6 +53,13 @@ func main() {
 	router.DELETE(baseURL+"/staff", c.DeleteStaff)
 	router.GET(baseURL+"/staff/jobType", c.GetAllJobType)
 
+	//asset
+	router.GET(baseURL+"/asset", c.GetAllAssets)
+	router.POST(baseURL+"/asset", c.AddAsset)
+	router.DELETE(baseURL+"/asset", c.DeleteAsset)
+	router.GET(baseURL+"/asset/staff/:staffID", c.GetAssetByStaff)
+	router.POST(baseURL+"/asset/transfer", c.TransferAsset)
+
 	err := router.Run(fmt.Sprintf(":%d", port))
 	if err != nil {
 		log.Fatal(err)

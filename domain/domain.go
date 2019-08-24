@@ -21,33 +21,6 @@ var (
 	database *mongo.Database
 )
 
-func init() {
-	var err error
-	ctx = context.Background()
-
-	Client, err = mongo.Connect(ctx, options.Client().ApplyURI("mongodb://localhost:27017"))
-	util.CheckErr(err, "mongo connect error")
-	// Check the connection
-	util.CheckErr(Client.Ping(ctx, nil), "mongo client ping error")
-}
-
-// filterConditionByMonthOrAndLine can construct mongo query filter by time or time and line no.
-func filterConditionByMonthOrAndLine(time time.Time, lineNo ...int) bson.M {
-	var filter bson.M
-	if lineNo != nil {
-		filter = bson.M{
-			"income.income_month": bson.M{"$eq": time},
-			"line.line_no":        bson.M{"$eq": lineNo[0]},
-		}
-	} else {
-		filter = bson.M{
-			"income.income_month": bson.M{"$eq": time},
-		}
-	}
-	glog.Infof("filter content is : %#v", filter)
-	return filter
-}
-
 // Domain is basic struct for all Domain
 type Domain struct {
 	ID primitive.ObjectID `json:"id" bson:"_id,omitempty"`
@@ -89,6 +62,33 @@ type SortedTwoMonthsIncomes struct {
 //IncomeQuery is query string format like "yyyy-MM"
 type IncomeQuery struct {
 	Month string `json:"month"` //month string format like "yyyy-MM"
+}
+
+func init() {
+	var err error
+	ctx = context.Background()
+
+	Client, err = mongo.Connect(ctx, options.Client().ApplyURI("mongodb://localhost:27017"))
+	util.CheckErr(err, "mongo connect error")
+	// Check the connection
+	util.CheckErr(Client.Ping(ctx, nil), "mongo client ping error")
+}
+
+// filterConditionByMonthOrAndLine can construct mongo query filter by time or time and line no.
+func filterConditionByMonthOrAndLine(time time.Time, lineNo ...int) bson.M {
+	var filter bson.M
+	if lineNo != nil {
+		filter = bson.M{
+			"income.income_month": bson.M{"$eq": time},
+			"line.line_no":        bson.M{"$eq": lineNo[0]},
+		}
+	} else {
+		filter = bson.M{
+			"income.income_month": bson.M{"$eq": time},
+		}
+	}
+	glog.Infof("filter content is : %#v", filter)
+	return filter
 }
 
 // GetYearAndMonth get year and month from query string
