@@ -23,7 +23,8 @@ var (
 
 // Domain is basic struct for all Domain
 type Domain struct {
-	ID primitive.ObjectID `json:"id" bson:"_id,omitempty"`
+	ID  primitive.ObjectID `bson:"_id,omitempty"`
+	JID string             `json:"id,omitempty"`
 }
 
 //Line is Bus line info
